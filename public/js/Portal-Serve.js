@@ -43,6 +43,7 @@ class ServerView{
 
 const serving = new ServerView();
 
+
 /*
 function onTextReady(text){
     console.log(text);
