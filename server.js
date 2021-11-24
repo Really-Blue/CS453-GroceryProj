@@ -8,6 +8,9 @@ const { MongoClient, Collection } = require('mongodb');
 const MONGO_URL = 'mongodb://localhost:27017/grocery-db';
 let db = null;
 
+app.use(express.static('public'));
+app.use(bodyParser.json());
+
 async function startDbAndServer() {
     await MongoClient.connect(MONGO_URL, function(err, datab){
         if(err) { throw err; }
@@ -21,9 +24,6 @@ async function startDbAndServer() {
     });
 };
 startDbAndServer();
-
-app.use(express.static('public'));
-app.use(bodyParser.json());
 
 app.get('/', function(req, res){
     console.log('A user has connected.');
@@ -40,6 +40,7 @@ app.get('/fan', function(req, res){
     else{
         res.send('No ' + truth + '(s), out of inventory!');
     }
+    res.end();
 });
 
 
