@@ -2,3 +2,42 @@ img {
     width: 200px;
     margin: 5px;
 }
+/*Portal-Create*/
+#h1{
+    display: block;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    border: solid gray;
+    width: fit-content;
+    margin:0 auto;
+
+}
+#creationForm{
+    width: fit-content;
+    padding: 18px;
+    padding-right: 18px;
+    margin-top: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: thistle;
+    align-self: center;
+}
+#creationForm input[type=text]{
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 3px solid slategray;
+    margin: 12px;
+    
+}
+#creationForm input[type=submit]{
+    display: block;
+    height: auto;
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+}
+#resMsg{
+    text-align: center;
+}

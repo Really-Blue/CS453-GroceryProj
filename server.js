@@ -52,14 +52,34 @@ async function validUser(req, res){
 
     let username = req.body.username;
     let password = req.body.password;
+    let email = req.body.email;
     let collection = db.collection('groceryUsers');
     console.log("username input:"+ username + " password input:" + password)
-    const query ={
-        "username": username,
-        "password": password 
-    };
 
-    if(username && password){
+    if(username && password && email){
+        const query ={
+            "username": username,
+            "password": password,
+            "email": email
+        };
+        let result = await collection.findOne(query); //this can be changed to speed up the process
+        console.log("result:\n"+ result);
+        if(result){
+            console.log(result._id);
+            console.log(result.username);
+            console.log(result.password);
+            res.send('User exists');
+        }
+        else{
+            res.send('New');
+        }
+        res.end();
+    }
+    else if(username && password){
+        const query ={
+            "username": username,
+            "password": password 
+        };
         let result = await collection.findOne(query);
         console.log("result:\n"+ result);
         if(result){
@@ -74,7 +94,7 @@ async function validUser(req, res){
         res.end();
     }
     else{
-        res.send('Please enter username and password');
+        res.send('Please fill out all of the forms');
         res.end();
     }
 }
