@@ -31,7 +31,7 @@ img {
     margin: 12px;
     
 }
-#creationForm input[type=submit]{
+#creationForm input[type=button]{
     display: block;
     height: auto;
     width: auto;

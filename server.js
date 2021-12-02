@@ -45,7 +45,6 @@ app.get('/fan', function(req, res){
 
 
 async function validUser(req, res){
-    console.log('A user has attempted to login.');
     const qp = req.body;
     console.log(qp);
     //viewData();
@@ -54,7 +53,7 @@ async function validUser(req, res){
     let password = req.body.password;
     let email = req.body.email;
     let collection = db.collection('groceryUsers');
-    console.log("username input:"+ username + " password input:" + password)
+    console.log("username input:"+ username + " password input:" + password + " email if present:" + email);
 
     if(username && password && email){
         const query ={
@@ -68,14 +67,24 @@ async function validUser(req, res){
             console.log(result._id);
             console.log(result.username);
             console.log(result.password);
+            console.log(result.email);
             res.send('User exists');
         }
         else{
-            res.send('New');
+            try{
+                let insertVal = await collection.insertOne(query);
+                console.log(insertVal);
+                res.send(insertVal);
+            }
+            catch(err){
+                console.log(err)
+                res.send('Unexpected Result');
+            }
         }
         res.end();
     }
     else if(username && password){
+        console.log('A user has attempted to login.');
         const query ={
             "username": username,
             "password": password 
