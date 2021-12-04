@@ -1,16 +1,11 @@
-img {
-    width: 200px;
-    margin: 5px;
-}
 /*Portal-Create*/
-#h1{
+#h1{ /* Reusable outer container */
     display: block;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     border: solid gray;
     width: fit-content;
     margin:0 auto;
-
 }
 #creationForm{
     width: fit-content;
@@ -40,4 +35,86 @@ img {
 }
 #resMsg{
     text-align: center;
+}
+
+/*Portal-Login*/
+#login{
+    width: fit-content;
+    padding: 18px;
+    padding-right: 18px;
+    margin-top: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: thistle;
+    align-self: center;
+}
+#login input[type=text]{
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 3px solid slategray;
+    margin: 12px;
+}
+#login input[type=button]{
+    display: block;
+    height: auto;
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+}
+#loginInfo{
+    display: block;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    width: fit-content;
+    margin:0 auto;
+}
+#goCreate{
+    display: block;
+    height: auto;
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*Portal-Serve*/
+#search{
+    width: fit-content;
+    padding: 18px;
+    padding-right: 18px;
+    margin-top: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: thistle;
+    align-self: center;
+}
+#search input[type=text]{
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 3px solid slategray;
+    margin: 12px;
+}
+#search input[type=submit]{
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+}
+
+#filters{
+    width: fit-content;
+    padding: 18px;
+    padding-right: 18px;
+    margin-top: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: thistle;
+    align-self: center;
+}
+#filters input[type=checkbox]{
+    font-family: 'Times New Roman', Times, serif;
 }

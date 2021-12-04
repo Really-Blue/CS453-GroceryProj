@@ -17,6 +17,8 @@ async function startDbAndServer() {
         else{
             db = datab.db('grocery');
             console.log('Connected to Mongodb server');
+            //populateFoodData();
+            //viewData();
         }
     });
     app.listen(3000, function(){
@@ -30,18 +32,37 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/Portal-Login.html');
 });
 
-app.get('/fan', function(req, res){
+async function validItem(req, res){
     const queryParams = req.query;
     console.log(queryParams);
-    const truth = req.query.truth;
-    if((truth.toString()).charAt(truth.toString().length-1) === 's'){
-        res.send('No ' + truth + ', out of inventory!');
+    const itemInput = req.query.searched;
+
+    let collection = db.collection('groceryItems');
+    const query ={
+        "item":itemInput
+    };
+    let userSResult = await collection.findOne(query);
+    console.log(userSResult);
+    if(userSResult){
+        console.log(userSResult.item);
+        console.log(userSResult.inventory);
+        let x = userSResult.inventory.toString();
+        res.send(x);
     }
     else{
-        res.send('No ' + truth + '(s), out of inventory!');
+        res.send('No results');
     }
+    /*
+    if((item.toString()).charAt(item.toString().length-1) === 's'){
+        res.send('No ' + item + ', out of inventory!');
+    }
+    else{
+        res.send('No ' + item + '(s), out of inventory!');
+    }
+    */
     res.end();
-});
+}
+app.get('/searchItems', validItem);
 
 
 async function validUser(req, res){
@@ -56,10 +77,14 @@ async function validUser(req, res){
     console.log("username input:"+ username + " password input:" + password + " email if present:" + email);
 
     if(username && password && email){
+        let list = {
+            'User': 1
+        };
         const query ={
             "username": username,
             "password": password,
-            "email": email
+            "email": email,
+            "list": list
         };
         let result = await collection.findOne(query); //this can be changed to speed up the process
         console.log("result:\n"+ result);
@@ -109,8 +134,61 @@ async function validUser(req, res){
 }
 app.post('/attempt', validUser);
 
+
+
+
+
 async function viewData(){
-    let collection = db.collection('groceryUsers');
+    let collection = db.collection('groceryItems');
     let result = await collection.find().toArray();
     console.log(result);
+}
+
+async function populateFoodData(){
+    let collection = db.collection('groceryItems');
+    const query0 ={
+        "item":"apple",
+        "inventory":10
+    };
+    const query1 ={
+        "item":"carrot",
+        "inventory":10
+    };
+    const query2 ={
+        "item":"oat",
+        "inventory":10
+    };
+    const query3 ={
+        "item":"milk",
+        "inventory":10
+    };
+    const query4 ={
+        "item":"pizza",
+        "inventory":10
+    };
+    const query5 ={
+        "item":"icecream",
+        "inventory":10
+    };
+    const query6 ={
+        "item":"water",
+        "inventory":10
+    };
+    const query7 ={
+        "item":"chicken",
+        "inventory":10
+    };
+    const query8 ={
+        "item":"cheese",
+        "inventory":10
+    };
+    const query9 ={
+        "item":"potato",
+        "inventory":10
+    };
+    let result = await collection.insertMany([
+        query0, query1, query2, query3, query4, 
+        query5, query6, query7, query8, query9
+    ]);
+    console.log("result of insertMany into groceryItems = " + result);
 }

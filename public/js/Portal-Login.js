@@ -39,7 +39,10 @@ class LoginView{
     
         const result = await fetch('/attempt', options);
         const text = await result.text();
-        if(text.toString() == 'Success'){ location.href = 'Portal-Serve.html'; }
+        if(text.toString() == 'Success'){ 
+            location.href = `Portal-Serve.html?username=${uWord}`;
+            //location.href = 'Portal-Serve.html';
+        }
         else{
             const loginInfo = document.querySelector('#loginInfo');
             loginInfo.textContent = text;
@@ -48,7 +51,6 @@ class LoginView{
     }
     async _onCreateU(event){
         event.preventDefault();
-        //const userButton = document.querySelector('#goCreate');
         location.href = 'Portal-Create.html';
     }
 }
