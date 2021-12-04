@@ -1,10 +1,12 @@
 class LoginView{
     constructor(){
         this.loginButton = document.querySelector('#submitLogin');
+        this.createButton = document.querySelector('#goCreate');
         this.uInput = document.querySelector('#username-input');
         this.pInput = document.querySelector('#password-input');
         this.loginInfo = document.querySelector('#loginInfo');
         this.loginButton.addEventListener('click', this._onLogin);
+        this.createButton.addEventListener('click', this._onCreateU);
     }
     _onTextReady(text){
         console.log(text);
@@ -43,6 +45,11 @@ class LoginView{
             loginInfo.textContent = text;
             //this.loginInfo.textContent = text; 
         }
+    }
+    async _onCreateU(event){
+        event.preventDefault();
+        //const userButton = document.querySelector('#goCreate');
+        location.href = 'Portal-Create.html';
     }
 }
 const logerview = new LoginView();

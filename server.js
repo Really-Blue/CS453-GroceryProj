@@ -45,21 +45,50 @@ app.get('/fan', function(req, res){
 
 
 async function validUser(req, res){
-    console.log('A user has attempted to login.');
     const qp = req.body;
     console.log(qp);
     //viewData();
 
     let username = req.body.username;
     let password = req.body.password;
+    let email = req.body.email;
     let collection = db.collection('groceryUsers');
-    console.log("username input:"+ username + " password input:" + password)
-    const query ={
-        "username": username,
-        "password": password 
-    };
+    console.log("username input:"+ username + " password input:" + password + " email if present:" + email);
 
-    if(username && password){
+    if(username && password && email){
+        const query ={
+            "username": username,
+            "password": password,
+            "email": email
+        };
+        let result = await collection.findOne(query); //this can be changed to speed up the process
+        console.log("result:\n"+ result);
+        if(result){
+            console.log(result._id);
+            console.log(result.username);
+            console.log(result.password);
+            console.log(result.email);
+            res.send('User exists');
+        }
+        else{
+            try{
+                let insertVal = await collection.insertOne(query);
+                console.log(insertVal);
+                res.send(insertVal);
+            }
+            catch(err){
+                console.log(err)
+                res.send('Unexpected Result');
+            }
+        }
+        res.end();
+    }
+    else if(username && password){
+        console.log('A user has attempted to login.');
+        const query ={
+            "username": username,
+            "password": password 
+        };
         let result = await collection.findOne(query);
         console.log("result:\n"+ result);
         if(result){
@@ -74,7 +103,7 @@ async function validUser(req, res){
         res.end();
     }
     else{
-        res.send('Please enter username and password');
+        res.send('Please fill out all of the forms');
         res.end();
     }
 }
