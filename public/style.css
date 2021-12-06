@@ -1,4 +1,110 @@
+/*
+background: #292929
+Header: #1F1F1F
+Boxes: #1E1E1E
+Text: #DBDBDB
+Dropdown: #2E2E2E
+Highlights: #363636
+accentColor: #d7ad0d
+2ndaccentColor: #01E7B8
+*/
+
+*{
+    font-family: 'Courier New', monospace; 
+}
+
 img {
     width: 200px;
     margin: 5px;
 }
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    background-color: #292929;
+    padding: 0px;
+    margin: 10px 60px;
+}
+
+.heading{
+    grid-column: span 3;
+    background-color: #1F1F1F;
+    height: 10vh;
+    border-radius: 5px;
+    color: #DBDBDB;
+    text-align: center;
+    font-size: 3em;
+    padding-top: 20px;
+    border: 2px #363636 solid;
+    -webkit-box-shadow: 0 10px 6px -6px #d7ad0d;
+    -moz-box-shadow: 0 10px 6px -6px #d7ad0d;
+         box-shadow: 0 10px 6px -6px #d7ad0d;
+}
+
+.subheading{
+    width: 90%;
+    background-color: #363636;
+    padding: 10px 0px;
+    margin: 2% 5%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 2em;
+}
+
+.defaultbox{
+    grid-column: span 1;
+    background-color: #1F1F1F;
+    height: 80vh;
+    border-radius: 5px;
+    color: #DBDBDB;
+    margin: 0px;
+    padding: 0px;
+    border: 2px #363636 solid;
+    -webkit-box-shadow: 0 10px 6px -6px #d7ad0d;
+    -moz-box-shadow: 0 10px 6px -6px #d7ad0d;
+         box-shadow: 0 10px 6px -6px #d7ad0d;
+}
+
+.search{
+    background-color: #363636;
+    margin: 0% 5%;
+    padding:10px;
+    height: 65vh;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0.5em;
+    grid-column-gap: 0.5em;
+}
+
+.searchField{
+    grid-column: span 2;
+    padding: 5px;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+    border: 1px solid #d7ad0d;
+    color: #DBDBDB;
+    font-size: 1.5em;
+}
+
+.checkbox1{
+    grid-column: span 1;
+    border-radius: 5px;
+    border: 1px #d7ad0d solid;
+    padding-top: 25px;
+    padding-left: 20px;
+    font-size: 1.5em;
+}
+
+.submitButton{
+    grid-column: span 2;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+    border: 1px solid #d7ad0d;
+    color: #DBDBDB;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
