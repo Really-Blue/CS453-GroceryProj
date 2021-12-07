@@ -71,6 +71,7 @@
 
         <div class="defaultbox">
             <div class="subheading">Results</div>
+            <div class="resultsBox" id="results"></div>
         </div>
 
         <div class="defaultbox">
@@ -78,3 +79,71 @@
         </div>
     </body>
 </html> 
+
+<script>
+const results = 
+[
+    {
+        name: "Whole Wheat Bread",
+        type: "grain"
+    }, 
+    {
+        name: "Milk",
+        type: "dairy"
+    },
+    {
+        name: "Eggs",
+        type: "chicken"
+    },
+    {
+        name: "Apple",
+        type: "fruit"
+    },
+    {
+        name: "Orange",
+        type: "fruit"
+    },
+    {
+        name: "Peas",
+        type: "frozen"
+    },
+    {
+        name: "Ice Cream",
+        type: "dessert"
+    },
+    {
+        name: "Top Sirloin",
+        type: "beef"
+    },
+    {
+        name: "Pork Ribs",
+        type: "pork"
+    },
+    {
+        name: "Root Beer",
+        type: "drinks"
+    },
+    {
+        name: "Corn",
+        type: "canned"
+    },
+    {
+        name: "Salmon",
+        type: "seafood"
+    }
+]
+
+function resultsTemplate(result) {
+    return `
+    <div class="templateBox">
+        <p class="span3">${result.name}</p>
+        <button class="AddRemoveButton">+</button>
+    </div> 
+    `
+}
+
+document.getElementById("results").innerHTML = 
+`
+${results.map(resultsTemplate).join('')}
+`
+</script>

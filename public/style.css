@@ -108,3 +108,39 @@ img {
     cursor: pointer;
 }
 
+.resultsBox{
+    background-color: #363636;
+    margin: 0% 5%;
+    padding:10px;
+    height: 65vh;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0.5em;
+    grid-column-gap: 0.5em;
+    overflow-y: scroll;
+}
+
+.templateBox{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    height: 50px;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+    border: 1px solid #d7ad0d;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    font-size: 1.5em;
+}
+
+.span3{
+    grid-column: span 3;
+}
+
+.AddRemoveButton{
+    background-color: #2E2E2E;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
