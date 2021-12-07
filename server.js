@@ -17,8 +17,8 @@ async function startDbAndServer() {
         else{
             db = datab.db('grocery');
             console.log('Connected to Mongodb server');
-            //populateFoodData();
-            //viewData();
+            populateFoodData();
+            viewData();
         }
     });
     app.listen(3000, function(){
@@ -151,7 +151,7 @@ async function populateFoodData(){
         "inventory":10
     };
     const query1 ={
-        "item":"carrot",
+        "item":"grape",
         "inventory":10
     };
     const query2 ={

@@ -72,4 +72,84 @@ class ServerView{
     }
 }
 
+/*
+const results = 
+[
+    {
+        item: "Whole Wheat Bread",
+        type: "grain",
+        inventory: 10
+    }, 
+    {
+        item: "Milk",
+        type: "dairy",
+        inventory: 10
+    },
+    {
+        item: "Eggs",
+        type: "chicken",
+        inventory: 10
+    },
+    {
+        item: "Apple",
+        type: "fruit",
+        inventory: 10
+    },
+    {
+        item: "Orange",
+        type: "fruit",
+        inventory: 10
+    },
+    {
+        item: "Peas",
+        type: "frozen",
+        inventory: 10
+    },
+    {
+        item: "Ice Cream",
+        type: "dessert",
+        inventory: 10
+    },
+    {
+        item: "Top Sirloin",
+        type: "beef",
+        inventory: 10
+    },
+    {
+        item: "Pork Ribs",
+        type: "pork",
+        inventory: 10
+    },
+    {
+        item: "Root Beer",
+        type: "drinks",
+        inventory: 10
+    },
+    {
+        item: "Corn",
+        type: "canned",
+        inventory: 10
+    },
+    {
+        item: "Salmon",
+        type: "seafood",
+        inventory: 10
+    }
+]
+
+function resultsTemplate(result) {
+    return `
+    <div class="templateBox">
+        <p class="span2">${result.item}</p>
+        <p class="span1">Qty: ${result.inventory}<p>
+        <button class="AddRemoveButton">+</button>
+    </div> 
+    `
+}
+
+document.getElementById("results").innerHTML = 
+`
+${userSResult.map(resultsTemplate).join('')}
+`
+*/
 const serving = new ServerView();
