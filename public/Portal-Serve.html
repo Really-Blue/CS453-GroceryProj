@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>GroceryHomePage</title>
         <link rel="stylesheet" href="style.css">
-        <script src="Portal-Serve.js" defer></script>
+        <script src="/js/Portal-Serve.js" defer></script>
     </head>
     <body>
         <div id="greet">
@@ -13,10 +13,19 @@
             Item search: <input type="text" id="search-input"/>
             <input type="submit" value="Search">
         </form>
-        <br>
-        <button>Reset Filters</button>
-        <br>
-        <p>Description of options goes here.</p>
+        <form id="filters">
+            <button id="resetFilters">Reset Filters</button>
+            <br>
+            <input type="checkbox" id="vegetableBox" name="Vegetable" value="Vegetable">
+            <label for="vegetableBox">Vegetable</label>
+            <input type="checkbox" id="fruitBox" name="Fruit" value="Fruit">
+            <label for="fruitBox">Fruit</label>
+            <input type="checkbox" id="frozenBox" name="Frozen" value="Frozen">
+            <label for="frozenBox">Frozen</label>
+            <input type="checkbox" id="liquidBox" name="Liquid" value="Liquid">
+            <label for="liquidBox">Liquid</label>
+        </form>
         <div id="results"></div>
+        <button id="submitItem">Add Item</button>
     </body>
 </html>
