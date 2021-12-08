@@ -68,7 +68,6 @@ app.get('/searchItems', validItem);
 async function validUser(req, res){
     const qp = req.body;
     console.log(qp);
-    //viewData();
 
     let username = req.body.username;
     let password = req.body.password;
