@@ -52,14 +52,6 @@ async function validItem(req, res){
     else{
         res.send('No results');
     }
-    /*
-    if((item.toString()).charAt(item.toString().length-1) === 's'){
-        res.send('No ' + item + ', out of inventory!');
-    }
-    else{
-        res.send('No ' + item + '(s), out of inventory!');
-    }
-    */
     res.end();
 }
 app.get('/searchItems', validItem);
