@@ -2,11 +2,11 @@
 A senior project aimed at building a web application using node and express js.
 
 *Important items:
-This Project requires 2 event listeners, ES6 class style, one GET and one POST method (at least one), and usage of a NOSQL database. 
--Our project features multiple event listeners in the form of buttons for searches and creations.
--The javascript has been formatted to follow the ES6 style for all js files (save for at the moment app.js and main.js which will be removed).
--Our project features two GET methods and 1 POST method (the POST method was reused for two similar functions of the application) all found on "server.js".
--We used Node.js to communicate with our NOSQL database Mongodb, the total tech stack used was Mongodb, Express and Node.js
+This Project requires 2 event listeners, ES6 class style, one GET and one POST method (at least one of each), and usage of a NOSQL database. 
+-Our project features multiple event listeners in the form of buttons for searches, creations and updating.
+-The javascript has been formatted to follow the ES6 style for all js files (following example from HW5).
+-Our project features 3 GET methods and 2 POST methods all found on "server.js".
+-We used Node.js to communicate with our NOSQL database Mongodb, the total tech stack used was Mongodb, Express and Node.js (HTML/CSS too).
 -Front End was done with JS and HTML/CSS while backend was with Node.js, Express and Mongodb
 
 *To Run:
@@ -20,3 +20,4 @@ This project should have all the necessary files and dependencies ready for the 
 4. Now that the data is setup users will need to run the command "mongod -dbpath data/db" or wherever your dbpath is setup as (if not already done look into setting up mongodb).
 5. Users can then run "node server" in the location of the project in a terminal and if able to connect to mongodb and localhost port 3000 will be able to access the application.
 6. The application link is "http://localhost:3000/" first time users will need to create an account (try not to use any actual passwords) and then return to the landing page to login and progress into the grocery list side.
+7. On the actual grocery list page users can search up (a small amount of food items) and add them to their list displayed in the third box to the far right allowing multiple items to be stacked upon each other or having multiple different items.
