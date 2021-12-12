@@ -19,9 +19,6 @@ class createView{
         const uWord = uInput.value.trim();
         const pWord = pInput.value.trim();
         const eWord = eInput.value.trim();
-        console.log(uWord);
-        console.log(pWord);
-        console.log(eWord);
     
         const paramet = {
             username: uWord,
@@ -37,16 +34,15 @@ class createView{
             body: JSON.stringify( paramet )
         };
         const result = await fetch('/attempt', options);
-        const text = await result.json();
+        const text = await result.text();
         if(text.toString() !== 'User exists'){
-            console.log('Added a user to db, collection groceryUser');
-            console.log(text);
+            alert("Added a user to database");
         }
         else{
-            const UIres = document.querySelector('#resMsg');
-            UIres.text = text;
+            alert(text);
         }
     }
+
     async _onReturn(event){
         event.preventDefault();
         location.href = 'Portal-Login.html';

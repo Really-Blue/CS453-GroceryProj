@@ -6,26 +6,77 @@
         <link rel="stylesheet" href="style.css">
         <script src="/js/Portal-Serve.js" defer></script>
     </head>
-    <body>
-        <div id="greet">
+    <body class="grid">
+
+        <div class="heading">
+            <span>Grocery List</span>
         </div>
-        <form id="search">
-            Item search: <input type="text" id="search-input"/>
-            <input type="submit" value="Search">
-        </form>
-        <form id="filters">
-            <button id="resetFilters">Reset Filters</button>
-            <br>
-            <input type="checkbox" id="vegetableBox" name="Vegetable" value="Vegetable">
-            <label for="vegetableBox">Vegetable</label>
-            <input type="checkbox" id="fruitBox" name="Fruit" value="Fruit">
-            <label for="fruitBox">Fruit</label>
-            <input type="checkbox" id="frozenBox" name="Frozen" value="Frozen">
-            <label for="frozenBox">Frozen</label>
-            <input type="checkbox" id="liquidBox" name="Liquid" value="Liquid">
-            <label for="liquidBox">Liquid</label>
-        </form>
-        <div id="results"></div>
-        <button id="submitItem">Add Item</button>
+
+        <div class="defaultbox">
+            <div class="subheading">Search</div>
+            <form class="search" id="search">
+                <input class="searchField" type="text" id="search-input" placeholder="Keyword"/>
+                <div class="checkbox1">
+                    <input type="checkbox" id="dairy" name="dairy" value="dairy">
+                    <label for="dairy">Dairy</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="grain" name="grain" value="grain">
+                    <label for="grain">Grain</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="vegetable" name="vegetable" value="vegetable">
+                    <label for="vegetable">Vegetable</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="fruit" name="fruit" value="fruit">
+                    <label for="fruit">Fruit</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="frozen" name="frozen" value="frozen">
+                    <label for="frozen">Frozen</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="drinks" name="drinks" value="drinks">
+                    <label for="drinks">Drinks</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="dessert" name="dessert" value="dessert">
+                    <label for="dessert">Dessert</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="canned" name="canned" value="canned">
+                    <label for="canned">Canned</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="beef" name="beef" value="beef">
+                    <label for="beef">Beef</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="pork" name="pork" value="pork">
+                    <label for="pork">Pork</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="chicken" name="chicken" value="chicken">
+                    <label for="chicken">Chicken</label>
+                </div>
+                <div class="checkbox1">
+                    <input type="checkbox" id="seafood" name="seafood" value="seafood">
+                    <label for="seafood">Seafood</label>
+                </div>
+                <input class="submitButton" type="submit" value="Search">
+
+            </form>
+        </div>
+
+        <div class="defaultbox">
+            <div class="subheading">Results</div>
+            <div class="resultsBox" id="results"></div>
+        </div>
+
+        <div class="defaultbox">
+            <div class="subheading">My List</div>
+            <div class="listBox" id="uList"></div>
+        </div>
     </body>
-</html>
+</html> 

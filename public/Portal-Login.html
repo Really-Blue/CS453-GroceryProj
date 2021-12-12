@@ -6,16 +6,22 @@
         <link rel="stylesheet" href="style.css">
         <script src="/js/Portal-Login.js" defer></script>
     </head>
-    <body>
-        <header id="h1">Welcome to the Grocery List Creator
-            <form id="login" action="auth" method="post">
-                Username: <input type="text" id="username-input"/>
-                Password: <input type="text" id="password-input"/>
-                <input id="submitLogin" type="button" value ="Login"/>
-            <br>
-            <div id="loginInfo">Please enter your Username and Password to login.</div>
-            <br>
-            <button id="goCreate">Create Account</button>
-        </header>
+    <body class="grid">
+            <div class="heading" id='h1'>Welcome to the Grocery List Creator</div>
+                <br>
+                <div>
+                    <form id="login" action="auth" method="post">
+                        <div class="loginBox">
+                            <div id="loginInfo">Please enter your Username and Password to login.</div>
+                            Username: <input class="paddingInput" type="text" id="username-input"/>
+                            <br>
+                            Password: <input class="paddingInput" type="text" id="password-input"/>
+                            <br>
+                            <input class="loginButton" id="submitLogin" type="button" value ="Login"/>
+                            <br>
+                            <button  class="loginButton" id="goCreate">Create Account</button>
+                        </div>
+                    
+                </div>
     </body>
 </html>

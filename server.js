@@ -26,54 +26,42 @@ async function startDbAndServer() {
 };
 startDbAndServer();
 
+/* Redirect user to correct destination */
 app.get('/', function(req, res){
-    console.log('A user has connected.');
+    console.log('User at login page');
     res.sendFile(__dirname + '/public/Portal-Login.html');
 });
 
+/*
+Take user input and search results based off of it. 
+It can be incomplete and obtain results or empty to get all results.
+*/
 async function validItem(req, res){
-    const queryParams = req.query;
-    console.log(queryParams);
-    const itemInput = req.query.searched;
+    const itemInput = req.query.searched.toString().toLowerCase().trim();
+    let reg = new RegExp(`${itemInput}`);
 
     let collection = db.collection('groceryItems');
     const query ={
-        "item":itemInput
+        "item":reg
     };
-    let userSResult = await collection.findOne(query);
-    console.log(userSResult);
-    if(userSResult){
-        console.log(userSResult.item);
-        console.log(userSResult.inventory);
-        let x = userSResult.inventory.toString();
-        res.send(x);
+    let manyResult = await collection.find(query).toArray();
+    if(manyResult){
+        res.send(JSON.stringify(manyResult));
     }
     else{
         res.send('No results');
     }
-    /*
-    if((item.toString()).charAt(item.toString().length-1) === 's'){
-        res.send('No ' + item + ', out of inventory!');
-    }
-    else{
-        res.send('No ' + item + '(s), out of inventory!');
-    }
-    */
     res.end();
 }
 app.get('/searchItems', validItem);
 
 
+/* Make sure information is correct for login or account creation. */
 async function validUser(req, res){
-    const qp = req.body;
-    console.log(qp);
-    //viewData();
-
     let username = req.body.username;
     let password = req.body.password;
     let email = req.body.email;
     let collection = db.collection('groceryUsers');
-    console.log("username input:"+ username + " password input:" + password + " email if present:" + email);
 
     if(username && password && email){
         let list = {
@@ -85,19 +73,16 @@ async function validUser(req, res){
             "email": email,
             "list": list
         };
-        let result = await collection.findOne(query); //this can be changed to speed up the process
-        console.log("result:\n"+ result);
+        const checkQuery ={
+            "username": username
+        };
+        let result = await collection.findOne(checkQuery);
         if(result){
-            console.log(result._id);
-            console.log(result.username);
-            console.log(result.password);
-            console.log(result.email);
             res.send('User exists');
         }
         else{
             try{
                 let insertVal = await collection.insertOne(query);
-                console.log(insertVal);
                 res.send(insertVal);
             }
             catch(err){
@@ -114,11 +99,7 @@ async function validUser(req, res){
             "password": password 
         };
         let result = await collection.findOne(query);
-        console.log("result:\n"+ result);
         if(result){
-            console.log(result._id);
-            console.log(result.username);
-            console.log(result.password);
             res.send('Success');
         }
         else{
@@ -133,12 +114,80 @@ async function validUser(req, res){
 }
 app.post('/attempt', validUser);
 
+/* Update user list and inventory of chosen item. */
+async function addOn(req, res){
+    let username = req.body.username;
+    let item = req.body.item;
+    let collection = db.collection('groceryUsers');
+    let collectionItems = db.collection('groceryItems');
 
+    if(username && item){
+        const query ={
+            "username": username
+        };
+        let result = await collection.findOne(query);
+        let objList = result.list;
+        let foundItem = false;
+        for(let [key, value] of Object.entries(objList)){
+            if(key === item.toString()){
+                objList[key] += 1;
+                foundItem = true;
+            }
+        }
+        if(!foundItem){
+            objList[item] = 1;
+        }
+        const updatedList = { $set: { list:objList } };
+        let upResult = await collection.updateOne(query, updatedList);
 
+        const quer={
+            "item":item
+        };
+        let invResult = await collectionItems.findOne(quer);
+        const updatedInventory = { $set: { inventory:invResult.inventory-1 } };
+        let downResult = await collectionItems.updateOne(quer, updatedInventory);
+        if(upResult && downResult){
+            res.send('Success update');
+        }
+        else{
+            res.send('Failed Update');
+        }
+    }
+    else{
+        res.send('Failed Update');
+    }
+    res.end();
+}
+app.post('/addToUserList', addOn);
 
+/* Obtain list of current user. */
+async function userLists(req, res){
+    let user = req.query.username.toString()
+    let collection = db.collection('groceryUsers');
 
+    if(user){
+        const query ={
+            "username": user
+        };
+        let result = await collection.findOne(query);
+        if(result){
+            let arr = Object.entries(result.list);
+            res.send(arr);
+        }
+        else{
+            res.send("Error: user wasn't found");
+        }
+    }
+    else{
+        res.send("No List Available");
+    }
+    res.end();
+}
+app.get('/getUserList', userLists);
+
+/* Two helper functions for viewing data of collections and populating data. */
 async function viewData(){
-    let collection = db.collection('groceryItems');
+    let collection = db.collection('groceryUsers');
     let result = await collection.find().toArray();
     console.log(result);
 }
@@ -150,7 +199,7 @@ async function populateFoodData(){
         "inventory":10
     };
     const query1 ={
-        "item":"carrot",
+        "item":"grape",
         "inventory":10
     };
     const query2 ={
@@ -191,4 +240,3 @@ async function populateFoodData(){
     ]);
     console.log("result of insertMany into groceryItems = " + result);
 }
-

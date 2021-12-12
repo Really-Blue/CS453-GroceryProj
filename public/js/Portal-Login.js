@@ -8,14 +8,8 @@ class LoginView{
         this.loginButton.addEventListener('click', this._onLogin);
         this.createButton.addEventListener('click', this._onCreateU);
     }
-    _onTextReady(text){
-        console.log(text);
-    }
     
-    _onResponse(response){
-        return response.text();
-    }
-    
+    /* Perform login check */
     async _onLogin(event){
         event.preventDefault();
         
@@ -41,14 +35,13 @@ class LoginView{
         const text = await result.text();
         if(text.toString() == 'Success'){ 
             location.href = `Portal-Serve.html?username=${uWord}`;
-            //location.href = 'Portal-Serve.html';
         }
         else{
             const loginInfo = document.querySelector('#loginInfo');
             loginInfo.textContent = text;
-            //this.loginInfo.textContent = text; 
         }
     }
+
     async _onCreateU(event){
         event.preventDefault();
         location.href = 'Portal-Create.html';
