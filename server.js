@@ -17,8 +17,8 @@ async function startDbAndServer() {
         else{
             db = datab.db('grocery');
             console.log('Connected to Mongodb server');
-            //populateFoodData();
-            //viewData();
+            populateFoodData();
+            viewData();
         }
     });
     app.listen(3000, function(){
@@ -52,14 +52,6 @@ async function validItem(req, res){
     else{
         res.send('No results');
     }
-    /*
-    if((item.toString()).charAt(item.toString().length-1) === 's'){
-        res.send('No ' + item + ', out of inventory!');
-    }
-    else{
-        res.send('No ' + item + '(s), out of inventory!');
-    }
-    */
     res.end();
 }
 app.get('/searchItems', validItem);
@@ -150,7 +142,7 @@ async function populateFoodData(){
         "inventory":10
     };
     const query1 ={
-        "item":"carrot",
+        "item":"grape",
         "inventory":10
     };
     const query2 ={

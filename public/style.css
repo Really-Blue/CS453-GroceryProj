@@ -125,22 +125,78 @@ img {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
-    height: 50px;
     background-color: #2E2E2E;
     border-radius: 5px;
     border: 1px solid #d7ad0d;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    font-size: 1.5em;
+    font-size: 20px;
+    height:auto;
+    margin: 0px;
 }
 
-.span3{
-    grid-column: span 3;
+.span1{
+    grid-column: span 1;
+    margin:0px;
+    padding:30px 0px 0px 10px;
+}
+
+.span2{
+    grid-column: span 2;
+    margin:0px;
+    padding:30px 0px 0px 20px;
 }
 
 .AddRemoveButton{
+    grid-column: span 1;
     background-color: #2E2E2E;
     height: auto;
+    width: 100%;
     padding: 0px;
     margin: 0px;
+    cursor:pointer;
+    font-size: 2em;
+    border-radius: 5px;
+    border: none;
+    color: #DBDBDB;
 }
+
+.loginBox{
+    text-align: center;
+    background-color: #1F1F1F;
+    padding: 20px;
+    color: #DBDBDB;
+    height: auto;
+}
+
+.paddingInput{
+    padding:5px;
+    margin: 10px;
+}
+
+.loginButton{
+    grid-column: span 2;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+    border: 1px solid #d7ad0d;
+    color: #DBDBDB;
+    font-size: 1em;
+    cursor: pointer;
+    width: 150px;
+    margin: 5px;
+    padding: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d7ad0d;
+    border-radius: 10px;
+  }
