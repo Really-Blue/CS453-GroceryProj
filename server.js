@@ -17,8 +17,8 @@ async function startDbAndServer() {
         else{
             db = datab.db('grocery');
             console.log('Connected to Mongodb server');
-            populateFoodData();
-            viewData();
+            //populateFoodData();
+            //viewData();
         }
     });
     app.listen(3000, function(){
@@ -35,19 +35,20 @@ app.get('/', function(req, res){
 async function validItem(req, res){
     const queryParams = req.query;
     console.log(queryParams);
-    const itemInput = req.query.searched;
+    const itemInput = req.query.searched.toString().toLowerCase().trim();
+    let reg = new RegExp(`${itemInput}`);
 
     let collection = db.collection('groceryItems');
     const query ={
         "item":itemInput
     };
-    let userSResult = await collection.findOne(query);
-    console.log(userSResult);
-    if(userSResult){
-        console.log(userSResult.item);
-        console.log(userSResult.inventory);
-        let x = userSResult.inventory.toString();
-        res.send(x);
+    const quer ={
+        "item":reg
+    };
+    let manyResult = await collection.find(quer).toArray();
+    console.log(manyResult);
+    if(manyResult){
+        res.send(JSON.stringify(manyResult));
     }
     else{
         res.send('No results');
@@ -125,8 +126,64 @@ async function validUser(req, res){
 }
 app.post('/attempt', validUser);
 
+async function addOn(req, res){
+    let username = req.body.username;
+    let item = req.body.item;
+    let collection = db.collection('groceryUsers');
 
+    if(username && item){
+        const query ={
+            "username": username,
+        };
+        let result = await collection.findOne(query);
+        let objList = result.list;
+        let foundItem = false;
+        for(let [key, value] of Object.entries(objList)){
+            console.log(`${key}: ${value}`);
+            if(key === item.toString()){
+                console.log("key === item.toString()");
+                console.log(objList[key]);
+                objList[key] += 1;
+                console.log(objList[key]);
+                foundItem = true;
+            }
+        }
+        if(!foundItem){
+            objList[item] = 1;
+        }
+        const updatedList = { $set: { list:objList } };
+        let upResult = await collection.updateOne(query, updatedList);
+        console.log(upResult);
+        res.send('Success');
+    }
+    else{
+        res.send("Failed Update");
+    }
+    res.end();
+}
+app.post('/addToUserList', addOn);
 
+async function userLists(req, res){
+    let user = req.query.username.toString()
+    let collection = db.collection('groceryUsers');
+
+    if(user){
+        const query ={
+            "username": user,
+        };
+        let result = await collection.findOne(query);
+        if(result){
+            console.log(result.list);
+            let arr = Object.entries(result.list);
+            res.send(arr);
+        }
+    }
+    else{
+        res.send("No List Available");
+    }
+    res.end();
+}
+app.get('/getUserList', userLists);
 
 
 async function viewData(){
